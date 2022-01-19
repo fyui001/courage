@@ -1,0 +1,21 @@
+{
+  "name": "fyui001/courage",
+  "description": "library",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "fyui001",
+      "email": "yun.cod@gmail.com"
+    }
+  ],
+  "require": {
+    "php": ">=7.4",
+    "ext-mbstring": "*",
+    "league/climate": "^3.7"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^9.5.11"
+  },
+  "autoload": {
+  }
+}
