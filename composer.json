@@ -17,5 +17,10 @@
     "phpunit/phpunit": "^9.5.11"
   },
   "autoload": {
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Courage\\Test\\": "tests/"
+    }
   }
 }
