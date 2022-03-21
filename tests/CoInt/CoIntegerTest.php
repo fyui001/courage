@@ -48,14 +48,14 @@ class CoIntegerTest extends TestCase
         $this->assertIsString($this->coInteger->isNumberFormat());
     }
 
-    public function testGetRawValue(): void
-    {
-        $this->assertIsInt($this->coInteger->getRawValue());
-    }
-
     public function testToString(): void
     {
         $this->assertSame('316', "{$this->coInteger}");
+    }
+
+    public function testToInt(): void
+    {
+        $this->assertIsInt($this->coInteger->toInt());
     }
 
     public function testIsEqual(): void

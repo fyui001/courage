@@ -25,6 +25,26 @@ abstract class CoNumeric
     }
 
     /**
+     * Convert to integer
+     *
+     * @return int
+     */
+    public function toInt(): int
+    {
+        return (int)$this->value;
+    }
+
+    /**
+     * Convert to float
+     *
+     * @return float
+     */
+    public function toFloat(): float
+    {
+        return (float)$this->value;
+    }
+
+    /**
      * Returns the result of an equivalence comparison with the CoNumeric value passed.
      *
      * @param CoNumeric $value
