@@ -19,6 +19,11 @@ abstract class CoNumeric
         return $this->value;
     }
 
+    public function __toString(): string
+    {
+        return (string)$this->value;
+    }
+
     /**
      * Returns the result of an equivalence comparison with the CoNumeric value passed.
      *

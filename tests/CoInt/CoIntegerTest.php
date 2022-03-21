@@ -53,6 +53,11 @@ class CoIntegerTest extends TestCase
         $this->assertIsInt($this->coInteger->getRawValue());
     }
 
+    public function testToString(): void
+    {
+        $this->assertSame('316', "{$this->coInteger}");
+    }
+
     public function testIsEqual(): void
     {
         foreach ($this->testValue as $key => $value) {
