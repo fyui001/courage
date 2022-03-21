@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Courage\Tests;
 
+use Courage\CoInt\CoInteger;
 use Courage\CoString;
 use PHPUnit\Framework\TestCase;
 
@@ -27,6 +28,12 @@ class CoStringTest extends TestCase
                 'value' => '高田憂希',
                 'result' => false,
             ],
+            'subString' => [
+                'startIndex' => 0,
+                'endLength' => 2,
+                'value' => '高田憂希',
+                'result' => '高田',
+            ],
         ],
         [
             'isEqual' => [
@@ -40,6 +47,12 @@ class CoStringTest extends TestCase
             'isEmpty' => [
                 'value' => '',
                 'result' => true,
+            ],
+            'subString' => [
+                'startIndex' => 3,
+                'endLength' => 3,
+                'value' => 'たかだゆうき',
+                'result' => 'ゆうき',
             ],
         ],
     ];
@@ -91,10 +104,25 @@ class CoStringTest extends TestCase
 
     public function testLength(): void
     {
+        $testValue = new CoInteger(mb_strlen($this->coString->getRawValue()));
         $this->assertSame(
-            $this->coString->length(),
-            mb_strlen($this->coString->getRawValue())
+            $this->coString->length()->getRawValue(),
+            $testValue->getRawValue()
         );
+    }
+
+    public function testSubString(): void
+    {
+        foreach ($this->testValue as $key => $value) {
+            $comparedValue = new CoString($value['subString']['value']);
+            $this->assertSame(
+                $value['subString']['result'],
+                $comparedValue->subString(
+                    new CoInteger($value['subString']['startIndex']),
+                    new CoInteger($value['subString']['endLength'])
+                )->getRawValue()
+            );
+        }
     }
 
     public function testMakeRandomCoStr(): void

@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Courage;
 
+use Courage\CoInt\CoInteger;
+
 class CoString
 {
     protected string $value;
@@ -57,9 +59,28 @@ class CoString
         return $this->value === '';
     }
 
-    public function length(): int
+    /**
+     *  Returns the length of string.
+     *
+     * @return CoInteger
+     */
+    public function length(): CoInteger
     {
-        return mb_strlen($this->value);
+        return new CoInteger(mb_strlen($this->value));
+    }
+
+    /**
+     * Returns a substring that starts at the specified startIndex and continues to the end of the string.
+     *
+     * @param CoInteger $startIndex
+     * @param CoInteger|null $endLength
+     * @return $this
+     */
+    public function subString(CoInteger $startIndex, ?CoInteger $endLength = null): self
+    {
+        return new static(
+            mb_substr($this->value, $startIndex->getRawValue(), $endLength->getRawValue())
+        );
     }
 
     /**
