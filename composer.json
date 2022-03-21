@@ -17,10 +17,13 @@
     "phpunit/phpunit": "^9.5.11"
   },
   "autoload": {
+    "psr-4": {
+      "Courage\\": "src/"
+    }
   },
   "autoload-dev": {
     "psr-4": {
-      "Courage\\Test\\": "tests/"
+      "Courage\\Tests\\": "tests/"
     }
   }
 }
