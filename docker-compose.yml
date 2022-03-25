@@ -1,0 +1,9 @@
+version: '3.9'
+services:
+  app:
+    stdin_open: true
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile
+    volumes:
+      - .:/code
