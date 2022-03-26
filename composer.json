@@ -3,6 +3,7 @@
   "description": "Courage provides a wrapper class that extends the scalar type.",
   "type": "library",
   "license": "MIT",
+  "keywords": ["type", "scalar"],
   "authors": [
     {
       "name": "fyui001",
