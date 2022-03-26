@@ -4,3 +4,13 @@
 
 Courage provides a wrapper class that extends the scalar type.
 
+# Supported Environments
+
+courage supports and tests PHP.4 and later.
+
+The PHP versions tested by courage are as follows.
+
+- PHP7.4 (windows-latest|ubuntu-latest|macos-latest)
+- PHP8.0 (windows-latest|ubuntu-latest|macos-latest)
+- PHP8.1 (windows-latest|ubuntu-latest|macos-latest)
+
