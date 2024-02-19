@@ -13,6 +13,11 @@ class CoFloat extends CoNumeric
         parent::__construct($value);
     }
 
+    public function getRawValue(): float
+    {
+        return $this->value;
+    }
+
     public function ceil(): self
     {
         return new static(ceil($this->value));
