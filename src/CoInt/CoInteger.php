@@ -13,6 +13,11 @@ class CoInteger extends CoNumeric
         parent::__construct($value);
     }
 
+    public function getRawValue(): int
+    {
+        return $this->value;
+    }
+
     public function isNumberFormat(): string
     {
         return number_format($this->value);

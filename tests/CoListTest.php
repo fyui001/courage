@@ -38,9 +38,34 @@ class CoListTest extends TestCase
         );
     }
 
+    public function testFilter()
+    {
+        $filteredArr = $this->coList->filter(fn (string $value) => $value === '高田憂希')->toArray();
+
+        $this->assertSame(
+            ['高田憂希'],
+            $filteredArr
+        );
+    }
+
+    public function testSome()
+    {
+        $val = '高田憂希';
+        $result = $this->coList->some(function (string $value) use ($val) {
+            return $value === $val;
+        });
+        $this->assertTrue($result);
+
+        $val = '山根綺';
+        $result = $this->coList->some(function (string $value) use ($val) {
+            return $value === $val;
+        });
+        $this->assertFalse($result);
+    }
+
     public function testLength(): void
     {
-        $this->assertSame(3, $this->coList->length()->toInt());
+        $this->assertSame(3, $this->coList->length());
     }
 
     public function testCount(): void
