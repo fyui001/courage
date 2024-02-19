@@ -29,13 +29,31 @@ class CoList implements \ArrayAccess, \Countable, \IteratorAggregate
      * @param callable $callable
      * @return self
      */
-    public function map(callable $callable): self
+    public function map(callable $callable): static
     {
-        return new self(
+        return new static(
             array_values(
                 array_map($callable, $this->value)
             )
         );
+    }
+
+    public function filter(callable $closure): static
+    {
+        return new static(
+            array_values(
+                array_filter(
+                    $this->value, $closure
+                )
+            )
+        );
+    }
+
+    public function some(callable $closure): bool
+    {
+        return array_reduce($this->value, function ($callback, $item) use ($closure) {
+            return $callback || $closure($item);
+        }, false);
     }
 
     /**
@@ -43,9 +61,9 @@ class CoList implements \ArrayAccess, \Countable, \IteratorAggregate
      *
      * @return CoInteger
      */
-    public function length(): CoInteger
+    public function length(): int
     {
-        return new CoInteger(count($this->value));
+        return count($this->value);
     }
 
     /**
@@ -55,7 +73,7 @@ class CoList implements \ArrayAccess, \Countable, \IteratorAggregate
      */
     public function count(): int
     {
-        return $this->length()->getRawValue();
+        return $this->length();
     }
 
     /**
