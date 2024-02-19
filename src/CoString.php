@@ -33,9 +33,13 @@ class CoString
      * @param CoString $value
      * @return bool
      */
-    public function isEqual(self $value): bool
+    public function isEqual(self|string $value): bool
     {
-        return $this->value === $value->getRawValue();
+        if ($value instanceof static) {
+            return $this->value === $value->getRawValue();
+        }
+
+        return $this->value === $value;
     }
 
     /**
@@ -44,9 +48,13 @@ class CoString
      * @param CoString $value
      * @return $this
      */
-    public function concat(self $value): self
+    public function concat(self|string $value): self
     {
-        return new static($this->value . $value->getRawValue());
+        if ($value instanceof static) {
+            return new static($this->value . $value->getRawValue());
+        }
+
+        return new static($this->value . $value);
     }
 
     /**
@@ -64,9 +72,9 @@ class CoString
      *
      * @return CoInteger
      */
-    public function length(): CoInteger
+    public function length(): int
     {
-        return new CoInteger(mb_strlen($this->value));
+        return mb_strlen($this->value);
     }
 
     /**
@@ -76,10 +84,10 @@ class CoString
      * @param CoInteger|null $endLength
      * @return $this
      */
-    public function subString(CoInteger $startIndex, ?CoInteger $endLength = null): self
+    public function subString(int $startIndex, int|null $endLength = null): self
     {
         return new static(
-            mb_substr($this->value, $startIndex->getRawValue(), $endLength->getRawValue())
+            mb_substr($this->value, $startIndex, $endLength)
         );
     }
 

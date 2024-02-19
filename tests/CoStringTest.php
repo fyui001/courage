@@ -50,7 +50,7 @@ class CoStringTest extends TestCase
             ],
             'subString' => [
                 'startIndex' => 3,
-                'endLength' => 3,
+                'endLength' => null,
                 'value' => 'たかだゆうき',
                 'result' => 'ゆうき',
             ],
@@ -71,7 +71,9 @@ class CoStringTest extends TestCase
     public function testIsEqual(): void
     {
         foreach ($this->testValue as $key => $value) {
-            $comparedValue = new CoString($value['isEqual']['value']);
+            $comparedValue = $key !== 1
+                ? new CoString($value['isEqual']['value'])
+                : $value['isEqual']['value'];
             $this->assertSame(
                 $value['isEqual']['result'],
                 $this->coString->isEqual($comparedValue)
@@ -82,7 +84,9 @@ class CoStringTest extends TestCase
     public function testConcat(): void
     {
         foreach ($this->testValue as $key => $value) {
-            $concatValue = new CoString($value['concat']['value']);
+            $concatValue = $key !== 1
+                ? new CoString($value['concat']['value'])
+                : $value['concat']['value'];
             $this->assertTrue(
               $this->coString
                   ->concat($concatValue)
@@ -104,10 +108,10 @@ class CoStringTest extends TestCase
 
     public function testLength(): void
     {
-        $testValue = new CoInteger(mb_strlen($this->coString->getRawValue()));
+        $testValue = mb_strlen($this->coString->getRawValue());
         $this->assertSame(
-            $this->coString->length()->getRawValue(),
-            $testValue->getRawValue()
+            $this->coString->length(),
+            $testValue
         );
     }
 
@@ -118,8 +122,8 @@ class CoStringTest extends TestCase
             $this->assertSame(
                 $value['subString']['result'],
                 $comparedValue->subString(
-                    new CoInteger($value['subString']['startIndex']),
-                    new CoInteger($value['subString']['endLength'])
+                    $value['subString']['startIndex'],
+                    $value['subString']['endLength']
                 )->getRawValue()
             );
         }
