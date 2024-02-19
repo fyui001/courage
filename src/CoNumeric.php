@@ -6,17 +6,11 @@ namespace Courage;
 
 abstract class CoNumeric
 {
-    /** @var int|float $value */
-    protected $value;
+    protected int|float $value;
 
-    protected function __construct($value)
+    protected function __construct(int|float$value)
     {
         $this->value = $value;
-    }
-
-    public function getRawValue()
-    {
-        return $this->value;
     }
 
     public function __toString(): string
@@ -50,9 +44,13 @@ abstract class CoNumeric
      * @param CoNumeric $value
      * @return bool
      */
-    public function isEqual(self $value): bool
+    public function isEqual(self|int|float $value): bool
     {
-        return $this->value === $value->getRawValue();
+        if ($value instanceof static) {
+            return $this->value === $value->getRawValue();
+        }
+
+        return $this->value === $value;
     }
 
     /**
@@ -61,9 +59,13 @@ abstract class CoNumeric
      * @param CoNumeric $value
      * @return bool
      */
-    public function isGreaterOrEqualThan(self $value): bool
+    public function isGreaterOrEqualThan(self|int|float $value): bool
     {
-        return $this->value >= $value->getRawValue();
+        if ($value instanceof static) {
+            return $this->value >= $value->getRawValue();
+        }
+
+        return $this->value >= $value;
     }
 
     /**
@@ -72,9 +74,13 @@ abstract class CoNumeric
      * @param CoNumeric $value
      * @return bool
      */
-    public function isGreaterThan(self $value): bool
+    public function isGreaterThan(self|int|float $value): bool
     {
-        return $this->value > $value->getRawValue();
+        if ($value instanceof static) {
+            return $this->value > $value->getRawValue();
+        }
+
+        return $this->value > $value;
     }
 
     /**
@@ -83,9 +89,13 @@ abstract class CoNumeric
      * @param CoNumeric $value
      * @return bool
      */
-    public function isLessOrEqualThan(self $value): bool
+    public function isLessOrEqualThan(self|int|float $value): bool
     {
-        return $this->value <= $value->getRawValue();
+        if ($value instanceof static) {
+            return $this->value <= $value->getRawValue();
+        }
+
+        return $this->value <= $value;
     }
 
     /**
@@ -94,8 +104,12 @@ abstract class CoNumeric
      * @param CoNumeric $value
      * @return bool
      */
-    public function isLessThan(self $value): bool
+    public function isLessThan(self|int|float $value): bool
     {
-        return $this->value < $value->getRawValue();
+        if ($value instanceof static) {
+            return $this->value < $value->getRawValue();
+        }
+
+        return $this->value < $value;
     }
 }

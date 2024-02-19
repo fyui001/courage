@@ -16,7 +16,7 @@ class CoPositiveFloat extends CoFloat
         parent::__construct($value);
     }
 
-    public static function makeZero(): self
+    public static function makeZero(): static
     {
         return new static(0.0);
     }

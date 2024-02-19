@@ -61,7 +61,9 @@ class CoIntegerTest extends TestCase
     public function testIsEqual(): void
     {
         foreach ($this->testValue as $key => $value) {
-            $comparedValue = new CoInteger($value['comparedValue']);
+            $comparedValue = $key !== 2
+                ? new CoInteger($value['comparedValue'])
+                : $value['comparedValue'];
             $this->assertSame(
                 $value['isEqual'],
                 $this->coInteger->isEqual($comparedValue)
@@ -72,7 +74,9 @@ class CoIntegerTest extends TestCase
     public function testIsGreaterOrEqualThan(): void
     {
         foreach ($this->testValue as $key => $value) {
-            $comparedValue = new CoInteger($value['comparedValue']);
+            $comparedValue = $key !== 2
+                ? new CoInteger($value['comparedValue'])
+                : $value['comparedValue'];
             $this->assertSame(
                 $value['isGreaterOrEqualThan'],
                 $this->coInteger->isGreaterOrEqualThan($comparedValue)
@@ -83,7 +87,9 @@ class CoIntegerTest extends TestCase
     public function testIsGreaterThan(): void
     {
         foreach ($this->testValue as $key => $value) {
-            $comparedValue = new CoInteger($value['comparedValue']);
+            $comparedValue = $key !== 2
+                ? new CoInteger($value['comparedValue'])
+                : $value['comparedValue'];
             $this->assertSame(
                 $value['isGreaterThan'],
                 $this->coInteger->isGreaterThan($comparedValue)
@@ -94,7 +100,9 @@ class CoIntegerTest extends TestCase
     public function testIsLessOrEqualThan(): void
     {
         foreach ($this->testValue as $key => $value) {
-            $comparedValue = new CoInteger($value['comparedValue']);
+            $comparedValue = $key !== 2
+                ? new CoInteger($value['comparedValue'])
+                : $value['comparedValue'];
             $this->assertSame(
                 $value['isLessOrEqualThan'],
                 $this->coInteger->isLessOrEqualThan($comparedValue)
@@ -105,7 +113,9 @@ class CoIntegerTest extends TestCase
     public function testIsLessThan(): void
     {
         foreach ($this->testValue as $key => $value) {
-            $comparedValue = new CoInteger($value['comparedValue']);
+            $comparedValue = $key !== 2
+                ? new CoInteger($value['comparedValue'])
+                : $value['comparedValue'];
             $this->assertSame(
                 $value['isLessThan'],
                 $this->coInteger->isLessThan($comparedValue)
