@@ -1,4 +1,4 @@
-FROM composer:2.2.7 AS composer-cache
+FROM composer:2.7.1 AS composer-cache
 WORKDIR /var/www/html
 
 # copy only composer files for caching
@@ -7,13 +7,13 @@ COPY composer.json composer.lock /var/www/html/
 # install deps(without generating autoloader)
 RUN composer install --no-scripts --no-autoloader --ignore-platform-reqs
 
-FROM php:7.4-bullseye
+FROM php:8.2-bullseye
 
 WORKDIR /code
 
 ENV TZ=UTC
 
-COPY --from=composer:2.1 /usr/bin/composer /usr/bin/composer
+COPY --from=composer-cache /usr/bin/composer /usr/bin/composer
 
 RUN apt update && \
     apt full-upgrade -y && \
