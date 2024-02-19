@@ -29,9 +29,9 @@ class CoList implements \ArrayAccess, \Countable, \IteratorAggregate
      * @param callable $callable
      * @return self
      */
-    public function map(callable $callable): static
+    public function map(callable $callable): self
     {
-        return new static(
+        return new self(
             array_values(
                 array_map($callable, $this->value)
             )
