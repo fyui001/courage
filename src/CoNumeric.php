@@ -46,7 +46,7 @@ abstract class CoNumeric
      */
     public function isEqual(self|int|float $value): bool
     {
-        if ($value instanceof static) {
+        if ($value instanceof self) {
             return $this->value === $value->getRawValue();
         }
 
@@ -61,7 +61,7 @@ abstract class CoNumeric
      */
     public function isGreaterOrEqualThan(self|int|float $value): bool
     {
-        if ($value instanceof static) {
+        if ($value instanceof self) {
             return $this->value >= $value->getRawValue();
         }
 
@@ -76,7 +76,7 @@ abstract class CoNumeric
      */
     public function isGreaterThan(self|int|float $value): bool
     {
-        if ($value instanceof static) {
+        if ($value instanceof self) {
             return $this->value > $value->getRawValue();
         }
 
@@ -91,7 +91,7 @@ abstract class CoNumeric
      */
     public function isLessOrEqualThan(self|int|float $value): bool
     {
-        if ($value instanceof static) {
+        if ($value instanceof self) {
             return $this->value <= $value->getRawValue();
         }
 
@@ -106,7 +106,7 @@ abstract class CoNumeric
      */
     public function isLessThan(self|int|float $value): bool
     {
-        if ($value instanceof static) {
+        if ($value instanceof self) {
             return $this->value < $value->getRawValue();
         }
 
