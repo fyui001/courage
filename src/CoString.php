@@ -35,7 +35,7 @@ class CoString
      */
     public function isEqual(self|string $value): bool
     {
-        if ($value instanceof static) {
+        if ($value instanceof self) {
             return $this->value === $value->getRawValue();
         }
 
@@ -50,7 +50,7 @@ class CoString
      */
     public function concat(self|string $value): self
     {
-        if ($value instanceof static) {
+        if ($value instanceof self) {
             return new static($this->value . $value->getRawValue());
         }
 
