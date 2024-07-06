@@ -7,7 +7,7 @@ COPY composer.json composer.lock /var/www/html/
 # install deps(without generating autoloader)
 RUN composer install --no-scripts --no-autoloader --ignore-platform-reqs
 
-FROM php:8.2-bullseye
+FROM php:8.3-bullseye
 
 WORKDIR /code
 
