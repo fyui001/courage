@@ -11,16 +11,17 @@ use PHPUnit\Framework\TestCase;
 class CoListTest extends TestCase
 {
     protected CoList $coList;
+    private const array ARR_VAL = [
+        '高田憂希',
+        '松井恵理子',
+        '桑原由気',
+    ];
 
     public function setUp(): void
     {
         parent::setUp();
 
-        $this->coList = new CoList([
-            '高田憂希',
-            '松井恵理子',
-            '桑原由気',
-        ]);
+        $this->coList = new CoList(self::ARR_VAL);
     }
 
     public function testToArray(): void
@@ -61,6 +62,50 @@ class CoListTest extends TestCase
             return $value === $val;
         });
         $this->assertFalse($result);
+    }
+
+    public function testMerge()
+    {
+        $stdClass = new class (
+            ['高田憂希']
+        ) extends CoList {};
+
+        $addClass = new class (
+            ['桑原由気']
+        ) extends CoList {};
+
+        $stdClass->merge($addClass->toArray());
+
+        $this->assertSame(
+            ['高田憂希', '桑原由気'],
+            $stdClass->toArray(),
+        );
+    }
+
+    public function testUnique()
+    {
+        $expected = new class([
+            '高田憂希',
+            '松井恵理子',
+            '桑原由気',
+            '山根綺',
+        ]) extends CoList {};
+
+        $stdClass = new class ([
+            '高田憂希',
+            '高田憂希',
+            '松井恵理子',
+            '桑原由気',
+            '山根綺',
+            '山根綺',
+        ]) extends CoList {};
+
+        $stdClass->unique();
+
+        $this->assertEquals(
+            $expected->toArray(),
+            $stdClass->toArray(),
+        );
     }
 
     public function testLength(): void
