@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Courage;
 
 use \ArrayIterator;
-use Courage\CoInt\CoInteger;
 use Courage\Exceptions\InvalidArgumentException;
 use RuntimeException;
 
@@ -38,6 +37,10 @@ class CoList implements \ArrayAccess, \Countable, \IteratorAggregate
         );
     }
 
+    /**
+     * @param callable $closure
+     * @return $this
+     */
     public function filter(callable $closure): static
     {
         return new static(
@@ -49,6 +52,10 @@ class CoList implements \ArrayAccess, \Countable, \IteratorAggregate
         );
     }
 
+    /**
+     * @param callable $closure
+     * @return bool
+     */
     public function some(callable $closure): bool
     {
         return array_reduce($this->value, function ($callback, $item) use ($closure) {
@@ -57,9 +64,26 @@ class CoList implements \ArrayAccess, \Countable, \IteratorAggregate
     }
 
     /**
+     * @param array $add
+     * @return void
+     */
+    public function merge(array $add): void
+    {
+        $this->value = array_merge($this->value, $add);
+    }
+
+    /**
+     * @return void
+     */
+    public function unique(): void
+    {
+        $this->value = array_values(array_unique($this->value, SORT_REGULAR));
+    }
+
+    /**
      * Returns length of list.
      *
-     * @return CoInteger
+     * @return int
      */
     public function length(): int
     {

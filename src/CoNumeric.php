@@ -41,7 +41,7 @@ abstract class CoNumeric
     /**
      * Returns the result of an equivalence comparison with the CoNumeric value passed.
      *
-     * @param CoNumeric $value
+     * @param CoNumeric|int|float $value
      * @return bool
      */
     public function isEqual(self|int|float $value): bool
@@ -56,7 +56,7 @@ abstract class CoNumeric
     /**
      * Greater than or equal to the CoNumeric value passed.
      *
-     * @param CoNumeric $value
+     * @param CoNumeric|int|float $value
      * @return bool
      */
     public function isGreaterOrEqualThan(self|int|float $value): bool
@@ -71,7 +71,7 @@ abstract class CoNumeric
     /**
      * Greater than to the CoNumeric value passed.
      *
-     * @param CoNumeric $value
+     * @param CoNumeric|int|float $value
      * @return bool
      */
     public function isGreaterThan(self|int|float $value): bool
@@ -86,7 +86,7 @@ abstract class CoNumeric
     /**
      * Less than or equal to the CoNumeric value passed.
      *
-     * @param CoNumeric $value
+     * @param CoNumeric|int|float $value
      * @return bool
      */
     public function isLessOrEqualThan(self|int|float $value): bool
@@ -101,7 +101,7 @@ abstract class CoNumeric
     /**
      * Less than to the CoNumeric value passed.
      *
-     * @param CoNumeric $value
+     * @param CoNumeric|int|float $value
      * @return bool
      */
     public function isLessThan(self|int|float $value): bool
