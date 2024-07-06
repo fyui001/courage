@@ -10,6 +10,5 @@ courage supports and tests PHP8.1 and later.
 
 The PHP versions tested by courage are as follows.
 
-- PHP8.1 (windows-latest|ubuntu-latest|macos-latest)
-- PHP8.2 (windows-latest|ubuntu-latest|macos-latest)
+- PHP8.3 (windows-latest|ubuntu-latest|macos-latest)
 
